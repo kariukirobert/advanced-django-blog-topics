@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+<!-- show content -->
+{% block content %}
+
+    <div class="col-md-10 mt-2 mb-5 mx-auto">
+        Are you sure you want to delete?
+        <h4>Title: {{ title }}</h4>
+
+        <form action="" method="POST">
+            {% csrf_token %}
+            
+            <button type="submit" class="btn btn-danger">Yes, Delete</button>
+        </form>
+    </div>
+
+{% endblock content %}

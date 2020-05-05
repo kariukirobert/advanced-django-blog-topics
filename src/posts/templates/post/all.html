@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+<!-- include block content -->
+{% block content %}
+<!-- include posts -->
+<div class="row my-3">
+    {% for post in posts %}
+    <div class="col-md-4 col-sm-6 col-12 my-2 mx-auto">
+        {% include 'post/display-posts.html' with post_list=post read=True truncate=True %}
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}

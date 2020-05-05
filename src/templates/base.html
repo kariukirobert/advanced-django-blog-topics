@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <!-- -->
+    {% load static %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'global/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'global/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'global/css/styles.css' %}">
+
+    <script src="{% static 'global/js/jquery-3.3.1.slim.min.js' %}"></script>
+    <script src="{% static 'global/js/bootstrap.min.js' %}"></script>
+</head>
+
+<body>
+
+    {% include 'navbar.html' %}
+    <!-- end navbar area -->
+    <div class="container">
+        {% block content %}
+        <!-- show content here -->
+        {% endblock content %}
+    </div>
+</body>
+
+</html>

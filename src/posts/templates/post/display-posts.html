@@ -1,0 +1,61 @@
+<div class="card">
+	<a href="{{ post_list.get_absolute_url }}">
+		<img class="card-img-top fluid" src="{{ post_list.image.url }}" alt="Card image cap" />
+	</a>
+	<div class="card-body">
+		<h5 class="card-title">{{ post_list.title }}</h5>
+
+		{% if post_list.publish_date %}
+		<!-- <span class="text-muted">Published by <span class="text-capitalize">{{ post_list.user }}</span> on {{ post_list.publish_date }}</span> -->
+		<p class="text-muted mb-0 float-left">
+			Published by <span class="text-capitalize">{{ post_list.user }}</span>
+		</p>
+
+		{% if user.is_authenticated and post_list.user.id == user.id %}
+			<p class="mb-0 text-primary float-right">
+				<a class="text-primary mr-1" href="{{ post_list.get_edit_url }}"><i class="fa fa-pencil"></i> Edit</a>
+				<a class="text-danger" href="{{ post_list.get_delete_url }}"><i class="fa fa-trash"></i> Delete</a>
+			</p>
+			{% endif %}
+
+			<p class="text-muted float-left">
+			   	&nbsp;On {{ post_list.publish_date }}
+				<span class="badge badge-success"><i class="fa fa-check"></i></span>
+			</p>
+		{% else %}
+			<span class="text-muted bg-warning px-2 py-1 rounded">Draft</span>
+			<span class="text-muted">by <span class="text-capitalize">{{ post_list.user }}</span></span>
+			{% if user.is_authenticated and post_list.user.id == user.id %}
+				<p class="mb-0 text-primary float-right">
+					<a class="text-primary mr-1" href="{{ post_list.get_edit_url }}"><i class="fa fa-pencil"></i> Edit</a>
+					<a class="text-danger" href="{{ post_list.get_delete_url }}"><i class="fa fa-trash"></i> Delete</a>
+				</p>
+			{% endif %}
+			<p class="text-muted">Last updated {{ post_list.updated }} </p>
+		{% endif %}
+
+		{% if truncate %}
+			<p class="card-text clearfix">{{ post_list.content|linebreaks|truncatewords:30 }}</p>
+		{% else %}
+			<p class="card-text clearfix">{{ post_list.content|linebreaks }}</p>
+		{% endif %}
+
+		<div class="row bt">
+			<div class="col-md-12">
+				{% if read %}
+					<span>
+						<a href="{{ post_list.like_post_url }}">
+							<i class="fa fa-thumbs-o-up" aria-hidden="true" style="color: blueviolet;">&nbsp; {{ post_list.likes.count }}</i>
+						</a>
+					</span>
+					<!-- <span class="ml-3">
+						<a href="{{ post_list.dislike_post_url }}">
+							<i class="fa fa-thumbs-o-down" aria-hidden="true" style="color: blueviolet;">&nbsp; {{ post_list.dislikes.count }}</i>
+						</a>
+					</span> -->
+					<a href="{{ post_list.get_absolute_url }}" class="btn btn-outline-primary">Read More</a>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>

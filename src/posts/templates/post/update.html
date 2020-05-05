@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+<!-- show content -->
+{% block content %}
+
+    <div class="col-md-10 mt-2 mb-5 mx-auto">
+        <h4>Update {{ post.title }} </h4>
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+    
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>    
+    </div>
+
+{% endblock content %}
